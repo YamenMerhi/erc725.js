@@ -73,36 +73,6 @@ const findMappingSchemaForKey = (
   key: string,
   schemas: ERC725JSONSchema[],
 ): ERC725JSONSchema | null => {
-  // Should detect:
-
-  // 1. Known/defined mapping
-  let keySchema = schemas.find((schema) => schema.key === key) || null;
-
-  if (keySchema) {
-    return keySchema;
-  }
-
-  // 2. "Semi defined mappings" i.e. "SupportedStandards:??????"
-  keySchema =
-    schemas.find(
-      (schema) => schema.key.substring(0, 58) === key.substring(0, 58),
-    ) || null;
-
-  if (!keySchema) {
-    return null;
-  }
-
-  return {
-    ...keySchema,
-    name: `${keySchema.name.split(':')[0]}:??????`,
-    key,
-  };
-};
-
-const findMappingSchemaForKey = (
-  key: string,
-  schemas: ERC725JSONSchema[],
-): ERC725JSONSchema | null => {
   const keySchema =
     schemas.find(
       (schema) => schema.key.substring(0, 26) === key.substring(0, 26),
