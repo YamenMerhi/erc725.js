@@ -144,14 +144,10 @@ export function guessKeyTypeFromKeyName(
   const splittedKeyName = keyName.split(':');
 
   if (splittedKeyName.length === 3) {
-    return 'Bytes20MappingWithGrouping';
+    return 'MappingWithGrouping';
   }
 
   if (splittedKeyName.length === 2) {
-    if (isAddress(splittedKeyName[1])) {
-      return 'Bytes20Mapping';
-    }
-
     return 'Mapping';
   }
 

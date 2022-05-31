@@ -4,8 +4,7 @@ export type ERC725JSONSchemaKeyType =
   | 'Singleton'
   | 'Mapping'
   | 'Array'
-  | 'Bytes20Mapping'
-  | 'Bytes20MappingWithGrouping';
+  | 'MappingWithGrouping';
 
 export type ERC725JSONSchemaValueContent =
   | 'Number'

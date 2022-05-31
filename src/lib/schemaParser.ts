@@ -18,11 +18,8 @@ const getSchemasByKeyType = (
     Singleton: schemas.filter((schema) => schema.keyType === 'Singleton'),
     Array: schemas.filter((schema) => schema.keyType === 'Array'),
     Mapping: schemas.filter((schema) => schema.keyType === 'Mapping'),
-    Bytes20Mapping: schemas.filter(
-      (schema) => schema.keyType === 'Bytes20Mapping',
-    ),
-    Bytes20MappingWithGrouping: schemas.filter(
-      (schema) => schema.keyType === 'Bytes20MappingWithGrouping',
+    MappingWithGrouping: schemas.filter(
+      (schema) => schema.keyType === 'MappingWithGrouping',
     ),
   };
 };
@@ -102,7 +99,7 @@ const findMappingSchemaForKey = (
   };
 };
 
-const findBytes20MappingSchemaForKey = (
+const findMappingSchemaForKey = (
   key: string,
   schemas: ERC725JSONSchema[],
 ): ERC725JSONSchema | null => {
@@ -127,7 +124,7 @@ const findBytes20MappingSchemaForKey = (
   return null;
 };
 
-const findBytes20MappingWithGroupingSchemaForKey = (
+const findMappingWithGroupingSchemaForKey = (
   key: string,
   schemas: ERC725JSONSchema[],
 ): ERC725JSONSchema | null => {
@@ -178,18 +175,9 @@ function schemaParser(
     return foundSchema;
   }
 
-  foundSchema = findBytes20MappingSchemaForKey(
+  foundSchema = findMappingWithGroupingSchemaForKey(
     key,
-    schemasByKeyType.Bytes20Mapping,
-  );
-
-  if (foundSchema) {
-    return foundSchema;
-  }
-
-  foundSchema = findBytes20MappingWithGroupingSchemaForKey(
-    key,
-    schemasByKeyType.Bytes20MappingWithGrouping,
+    schemasByKeyType.MappingWithGrouping,
   );
 
   return foundSchema;
