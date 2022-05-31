@@ -69,12 +69,12 @@ describe('schemaParser getSchema', () => {
   describe('Mapping', () => {
     it('finds known mappings', () => {
       const schema = getSchema(
-        '0xeafec4d89fa9619884b6b89135626455000000000000000000000000abe425d6',
+        '0xeafec4d89fa9619884b60000abe425d64acd861a49b8ddf5c0b6962110481f38',
       );
 
       assert.deepStrictEqual(schema, {
         name: 'SupportedStandards:LSP3UniversalProfile',
-        key: '0xeafec4d89fa9619884b6b89135626455000000000000000000000000abe425d6',
+        key: '0xeafec4d89fa9619884b60000abe425d64acd861a49b8ddf5c0b6962110481f38',
         keyType: 'Mapping',
         valueContent: '0xabe425d6',
         valueType: 'bytes4',
@@ -84,14 +84,14 @@ describe('schemaParser getSchema', () => {
     it('finds unknown mappings', () => {
       // Key name: SupportedStandards:UnknownKey
       const schema = getSchema(
-        '0xeafec4d89fa9619884b6b89135626455000000000000000000000000f4d7faed',
+        '0xeafec4d89fa9619884b60000f4d7faed14a1ab658d46d385bc29fb1eeaa56d0b',
       );
 
       assert.deepStrictEqual(schema, {
         name: 'SupportedStandards:??????',
-        key: '0xeafec4d89fa9619884b6b89135626455000000000000000000000000f4d7faed',
+        key: '0xeafec4d89fa9619884b60000f4d7faed14a1ab658d46d385bc29fb1eeaa56d0b',
         keyType: 'Mapping',
-        valueContent: '0xabe425d6',
+        valueContent: '0xf4d7faed',
         valueType: 'bytes4',
       });
     });
