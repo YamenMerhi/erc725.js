@@ -106,7 +106,7 @@ describe('schemaParser getSchema', () => {
       const extraSchema: ERC725JSONSchema = {
         name,
         key,
-        keyType: 'Bytes20Mapping',
+        keyType: 'Mapping',
         valueContent: 'Address',
         valueType: 'address',
       };
@@ -117,17 +117,17 @@ describe('schemaParser getSchema', () => {
     });
   });
 
-  describe('Bytes20MappingWithGrouping', () => {
-    it('finds Bytes20MappingWithGrouping', () => {
+  describe('MappingWithGrouping', () => {
+    it('finds MappingWithGrouping', () => {
       const address = 'af3bf2ffb025098b79caddfbdd113b3681817744';
       const name = `AddressPermissions:Permissions:${address}`;
-      const key = `0x4b80742d0000000082ac0000${address}`;
+      const key = `0x4b80742de2bf82acb3630000${address}`;
       const schema = getSchema(key);
 
       assert.deepStrictEqual(schema, {
         name,
         key,
-        keyType: 'Bytes20MappingWithGrouping',
+        keyType: 'MappingWithGrouping',
         valueContent: 'BitArray',
         valueType: 'bytes32',
       });
